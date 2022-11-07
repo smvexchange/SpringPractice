@@ -1,18 +1,19 @@
 package org.example;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MusicPlayer {
-    private Music music;
+    private final Music music;
+    @Value("${musicPlayer.name}")
     private String name;
+    @Value("${musicPlayer.volume}")
     private int volume;
 
-    public MusicPlayer() {
-    }
-
-    public MusicPlayer(Music music) {
-        this.music = music;
-    }
-
-    public void setMusic(Music music) {
+    public MusicPlayer(@Qualifier("rockMusic") Music music) {
         this.music = music;
     }
 
